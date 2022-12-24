@@ -30,6 +30,7 @@ public class Soru_01 {
         Thread.sleep(2000);
         //5. Ilk urunun ismini kaydedin ve bu urunun sayfasina gidin
         driver.findElement(By.xpath("//*[text()='Sauce Labs Backpack']")).click();
+
         Thread.sleep(2000);
         //6. Add to Cart butonuna basin
         driver.findElement(By.xpath("//*[@id='add-to-cart-sauce-labs-backpack']")).click();
