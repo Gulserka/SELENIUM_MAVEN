@@ -10,51 +10,35 @@ import java.time.Duration;
 import java.util.List;
 
 public class C01_MavenIlkTest {
-
     public static void main(String[] args) {
-
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        //https://www.amazon.com/ sayfasina gidelim
+        driver.get("https://www.amazon.com/");
 
-        //1https://www.amazon.com/ sayfasina gidelim
-       driver.get("https://www.amazon.com/");
-
-        //2arama kutusunu locate edelim
+        //arama kutusunu locate edelim
         WebElement aramaKutusu = driver.findElement(By.xpath("//*[@id='twotabsearchtextbox']"));
 
+        //“Samsung headphones” ile arama yapalim
+        aramaKutusu.sendKeys("Samsung headphones"); //Keys.ENTER
+        aramaKutusu.submit();// Enter'a bastık
 
-        //3- "Samsung headphones" ile arama yapalim
-        aramaKutusu.sendKeys("Samsung headphones"); //Keys.ENTER yerine submit yaptik.
-        aramaKutusu.submit();
+        //Bulunan sonuc sayisini yazdiralim
+        WebElement aramasonucu = driver.findElement(By.xpath("(//*[@class='sg-col-inner'])[1]"));
+        System.out.println("Arama Sonucu : "+aramasonucu.getText());
 
-
-        //4- Bulunan sonuc sayisini yazdiralim
-        WebElement aramaSonucu = driver.findElement(By.xpath("(//*[@class='sg-col-inner'])[1]"));
-        System.out.println("Arama Sonucu : " + aramaSonucu.getText());
-
-//gettext webelementin ustundekini mi aliyor?
-
-        //5- Ilk urunu tiklayalim
+        //Ilk urunu tiklayalim
         driver.findElement(By.xpath("(//*[@class='s-image'])[1]")).click();
 
-
-        //6Sayfadaki tum basliklari yazdiralim
-
-
-
-
-
-
-
-
-
-
-
-
+        //Sayfadaki tum basliklari yazdiralim
+        List<WebElement> sayfaBasliklariListesi = driver.findElements(By.xpath("//h1"));
+        // for (WebElement w:sayfaBasliklariListesi) {
+        //     System.out.println(w.getText());
+        // }
+        sayfaBasliklariListesi.forEach(t-> System.out.println(t.getText()));
+        //Sayfayı kapatınız
+        driver.close();
     }
-
-
-
 }

@@ -62,7 +62,8 @@ public class C02_MavenClassWork {
             System.out.println("TEST PASSED");
         }else System.out.println("TEST FAILED");
 
-
+        // Sayfayı kapatınız
+        driver.close();
 
     }
 
