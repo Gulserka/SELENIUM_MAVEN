@@ -35,14 +35,18 @@ public class Soru_02 {
     }
 
     @Test
-    public void brandName() {
+    public void Test01() {
         //~ click on Phones & PDAs
         //    ~ get the brandName of phones
 
         driver.findElement(By.xpath("//*[text()='Phones & PDAs']")).click();
-        String firstOne =driver.findElement(By.xpath("(//*[text()='HTC Touch HD'])[2]")).getText();
+
+        String firstOne = driver.findElement(By.linkText("HTC Touch HD")).getText();
+        System.out.println(firstOne);
         String secondOne =driver.findElement(By.xpath("//*[text()='iPhone']")).getText();
+        System.out.println(secondOne);
         String thirdOne =driver.findElement(By.xpath("//*[text()='Palm Treo Pro']")).getText();
+        System.out.println(thirdOne);
 
 
         //  ~ click on add to button for all elements

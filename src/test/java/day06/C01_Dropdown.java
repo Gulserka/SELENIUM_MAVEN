@@ -31,7 +31,7 @@ public class C01_Dropdown {
     }
 
     @Test
-    public void selectByIndexTest(){
+    public void selectByIndexTest(){  //is hayatinda belki bunun adini "yilla alakali dropdown i test et" olabilir.
 
 
 //        1. LOCATE dropdown element
@@ -93,14 +93,17 @@ public class C01_Dropdown {
     /*
     1. What is dropdown? Dropdown nedir?
     Dropdown liste olusturmak icin kullanilir.
+
     2. How to handle dropdown elements? Dropdown nasil automate edilir?
     -dropdown i locate ederim
     -select objesi olustururum
     -select objesi ile istedigim secenegi secerim
     NOT: select objesi olusturma nedenim, dropdownlarin Select classi ile olusturulmasi
-    3. Tum dropdown seceneklerini nasil print ederiz?
+
+    3. Tum dropdown seceneklerini nasil print ederiz?    BU SORUYU AHMET BAYRAM HOCA INTERVIEW DA SORMUS
     - tum dropdown elementlerini getOptions() methodu ile listeye koyariz
     - sonra secenekleri loop ile yazdirabilirz
+
     4. Bir secenegin secili oldugunu otomate etmek icin ne yapilir?
     Ornek: Gun olarak 10 i secdik ama ya secilmediyse?
     getFirstSelectedOption() secili olan secenegi return eder
