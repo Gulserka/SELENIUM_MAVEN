@@ -31,7 +31,7 @@ public class C01_Dropdown {
     }
 
     @Test
-    public void selectByIndexTest(){  //is hayatinda belki bunun adini "yilla alakali dropdown i test et" olabilir.
+    public void selectByIndexTest(){
 
 
 //        1. LOCATE dropdown element
@@ -46,7 +46,7 @@ public class C01_Dropdown {
 //      Ay Secimi
         WebElement ay = driver.findElement(By.xpath("//select[@id='month']"));
         Select ayDropdown = new Select(ay);
-        ayDropdown.selectByValue("0");//option in value degeri ile secim yapilabilir. January seceneinin value si 0
+        ayDropdown.selectByValue("0");//option in value degeri ile secim yapilabilir. January seceneginin value si 0
 
 //        Gun secimi selectByVisibleTest
         WebElement gun = driver.findElement(By.id("day"));
