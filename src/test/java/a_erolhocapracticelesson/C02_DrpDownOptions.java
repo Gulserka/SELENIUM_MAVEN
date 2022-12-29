@@ -1,4 +1,4 @@
-package erolhocapracticelesson;
+package a_erolhocapracticelesson;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -63,7 +63,7 @@ public class C02_DrpDownOptions {
 
 
         // sectiginiz option'i yazdirin
-        String sectigimOption=select.getFirstSelectedOption().getText();
+        String sectigimOption=select.getFirstSelectedOption().getText();  //getFirstSelectedOption() webElement dondurdugu icin gettext ile Stringe cevirdik
         System.out.println("SECTİGİ MOPTİON : " + sectigimOption);
 
 

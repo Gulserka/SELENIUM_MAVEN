@@ -1,8 +1,7 @@
-package erolhocapracticelesson;
+package a_erolhocapracticelesson;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -45,11 +44,11 @@ public class P10 {
         for (int i = 0; i < 24; i++) {
             List<WebElement> urunler = driver.findElements(By.xpath("//*[@width='225' and @height='225']"));
             urunler.get(i).click();
-            Thread.sleep(2000);
+            //    Thread.sleep(2000);
             System.out.println(i + ". başlık : " + driver.getTitle());
-            Thread.sleep(2000);
+            //  Thread.sleep(2000);
             driver.navigate().back();
-            Thread.sleep(2000);
+            //   Thread.sleep(2000);
         }
 
     }

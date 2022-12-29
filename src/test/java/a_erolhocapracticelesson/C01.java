@@ -1,4 +1,4 @@
-package erolhocapracticelesson;
+package a_erolhocapracticelesson;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
