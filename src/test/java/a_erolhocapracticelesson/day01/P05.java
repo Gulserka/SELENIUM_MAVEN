@@ -1,4 +1,4 @@
-package a_erolhocapracticelesson;
+package a_erolhocapracticelesson.day01;
 
 public class P05 {
 
