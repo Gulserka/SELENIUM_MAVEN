@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import utilities.TestBase;
 
+import java.util.List;
+
 public class Dropdown extends TestBase {
 
     @Test
@@ -15,11 +17,17 @@ public class Dropdown extends TestBase {
         driver.get("https://amazon.com");
 
         //Dropdown menuyu yazdıralım
-        WebElement dropdown = driver.findElement(By.xpath("//*[@id='searchDropdownBox']"));
-        Select select = new Select(dropdown);
-        for (WebElement w : select.getOptions()) {
-            System.out.println(w.getText());
-        }
+        //**** 1.YOL
+        List<WebElement> dropdown = driver.findElements(By.xpath("//*[@id='searchDropdownBox']"));
+        //Select select = new Select(dropdown);
+        dropdown.forEach(t-> System.out.println(t.getText()));
+
+        //**** 2.YOL
+//        WebElement dropdown = driver.findElement(By.xpath("//*[@id='searchDropdownBox']"));
+//        Select select = new Select(dropdown);
+//        for (WebElement w : select.getOptions()) {
+//            System.out.println(w.getText());
+//        }
 
 
         //Dropdown menuden baby secelim
