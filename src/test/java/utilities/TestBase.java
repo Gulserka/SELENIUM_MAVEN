@@ -1,5 +1,7 @@
 package utilities;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.*;
@@ -10,30 +12,39 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public abstract class TestBase {
-    //    TestBase i abstract yapmamizin sebebi bu sinifin objesini olusturmak istemiyorum
+//    TestBase i abstract yapmamizin sebebi bu sinifin objesini olusturmak istemiyorum
 //    TestBase testBase = new TestBase(); -> YAPILAMAZ
 //    Amacim bu sinifi extend etmek ve icindeki hazir metodlari kullanmak
-//    driver objesini olustur. Driver ya public yada protected olmali.
+
+    //    driver objesini olustur. Driver ya public yada protected olmali.
 //    Sebepi child classlarda gorulebilir olmasi
     protected static WebDriver driver;
+
     //    setUp
     @Before
-    public void setup(){
+    public void setup()  {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+//        driver=WebDriverManager.chromedriver().create();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));//20 SANIYEYE KADAR BEKLE.SELENIUM
     }
     //    tearDown
     @After
     public void tearDown(){
-        //driver.quit();
+        waitFor(5);
+        driver.quit();
     }
+
     //    MULTIPLE WINDOW:
 //    1 parametre alir : Gecis Yapmak Istedigim sayfanin Title
 //    ORNEK:
@@ -45,12 +56,11 @@ public abstract class TestBase {
         for (String handle : driver.getWindowHandles()) {
             driver.switchTo().window(handle);
             if (driver.getTitle().equals(targetTitle)) {
-                return;
+                return;//CIK. break;
             }
         }
         driver.switchTo().window(origin);
     }
-
 
 
     //    windowNumber sıfır (0)'dan başlıyor.
@@ -61,9 +71,11 @@ public abstract class TestBase {
         driver.switchTo().window(list.get(windowNumber));
     }
 
+
+
     /*   HARD WAIT:
- @param : second
-*/
+     @param : second
+    */
     public static void waitFor(int seconds){
         try {
             Thread.sleep(seconds*1000);
@@ -88,12 +100,10 @@ public abstract class TestBase {
     }
     //    ACTIONS_SCROLL_DOWN
     public static void scrollDownActions() {
-//        Actions actions = new Actions(driver);
         new Actions(driver).sendKeys(Keys.PAGE_DOWN).perform();
     }
     //    ACTIONS_SCROLL_UP
     public static void scrollUpActions() {
-//        Actions actions = new Actions(driver);
         new Actions(driver).sendKeys(Keys.PAGE_UP).perform();
     }
     //    ACTIONS_SCROLL_RIGHT
@@ -114,6 +124,7 @@ public abstract class TestBase {
 //        Actions actions = new Actions(driver);
         new Actions(driver).dragAndDropBy(source,x,y).perform();
     }
+
     //    DYNAMIC SELENIUM WAITS:
 //===============Explicit Wait==============//
     public static WebElement waitForVisibility(WebElement element, int timeout) {
@@ -165,7 +176,6 @@ public abstract class TestBase {
         }
     }
 
-
     //======Fluent Wait====
     // params : xpath of teh element , max timeout in seconds, polling in second
     public static WebElement fluentWait(String xpath, int withTimeout, int pollingEvery) {
@@ -180,6 +190,32 @@ public abstract class TestBase {
         return element;
     }
 
+    //   SCREENSHOTS
+    public void takeScreenShotOfPage() throws IOException {
+//        1. Take screenshot
+        File image = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+
+//       2. Save screenshot
+//        getting the current time as string to use in teh screenshot name, previous screenshots will be kept
+        String currentTime = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+
+//        Path of screenshot save folder               folder / folder    /file name
+        String path = System.getProperty("user.dir")+"/test-output/Screenshots/"+currentTime+"image.png";
+        FileUtils.copyFile(image,new File(path));
+    }
+
+    //    SCREENSHOT
+//    @params: WebElement
+//
+    public void takeScreenshotOfElement(WebElement element) throws IOException {
+//        1. take screenshot
+        File image = element.getScreenshotAs(OutputType.FILE);
+//        2. save screenshot
+//        path
+        String currentTime = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+        String path = System.getProperty("user.dir")+"/test-output/Screenshots/"+currentTime+"image.png";
+        FileUtils.copyFile(image,new File(path));
+    }
+
+
 }
-
-
