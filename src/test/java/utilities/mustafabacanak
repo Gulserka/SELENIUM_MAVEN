@@ -1,0 +1,17 @@
+//   Js Executer Scroll
+public static void jsScroll(By locator){
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+    WebElement elementName = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    js.executeScript("arguments[0].scrollIntoView(true);",elementName);
+}
+
+
+
+//   Js Executer Click
+public static void jsClick(By locator){
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+    WebElement elementName = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    js.executeScript("arguments[0].click();",elementName);
+}
